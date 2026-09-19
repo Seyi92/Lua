@@ -55,7 +55,7 @@ local Slider = PlayerTab:CreateSlider({
 
 local Slider = PlayerTab:CreateSlider({
    Name = "Dash",
-   Range = {10, 100},
+   Range = {50, 250},
    Increment = 1,
    Suffix = "Length",
    CurrentValue = 10,
