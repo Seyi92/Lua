@@ -52,3 +52,17 @@ local Slider = PlayerTab:CreateSlider({
    game.Players.LocalPlayer.Character:SetAttribute("SpeedMultiplier",Value)
    end,
 })
+
+local PlayerTab = Window:CreateTab("Player", 4483362458) -- Title, Image
+
+local Slider = PlayerTab:CreateSlider({
+   Name = "Dash",
+   Range = {50, 250},
+   Increment = 1,
+   Suffix = "Length",
+   CurrentValue = 10,
+   Flag = "Slider2", -- A flag is the identifier for the configuration file; make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   game.Players.LocalPlayer.Character:SetAttribute("Dash Length",Value)
+   end,
+})
