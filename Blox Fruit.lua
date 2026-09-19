@@ -43,7 +43,7 @@ local PlayerTab = Window:CreateTab("Player", 4483362458) -- Title, Image
 
 local Slider = PlayerTab:CreateSlider({
    Name = "Walk Speed",
-   Range = {50, 250},
+   Range = {50,250},
    Increment = 1,
    Suffix = "Speed",
    CurrentValue = 10,
@@ -55,7 +55,7 @@ local Slider = PlayerTab:CreateSlider({
 
 local Slider = PlayerTab:CreateSlider({
    Name = "Dash",
-   Range = {50, 250},
+   Range = {10, 100},
    Increment = 1,
    Suffix = "Length",
    CurrentValue = 10,
