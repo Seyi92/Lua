@@ -53,8 +53,6 @@ local Slider = PlayerTab:CreateSlider({
    end,
 })
 
-local PlayerTab = Window:CreateTab("Player", 4483362458) -- Title, Image
-
 local Slider = PlayerTab:CreateSlider({
    Name = "Dash",
    Range = {50, 250},
