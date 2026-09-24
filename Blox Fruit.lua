@@ -53,6 +53,13 @@ local Slider = PlayerTab:CreateSlider({
    end,
 })
 
+local Button = Tab:CreateButton({
+   Name = "Aimbot",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+   end,
+})
+
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 
