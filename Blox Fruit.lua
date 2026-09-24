@@ -52,10 +52,17 @@ local Slider = PlayerTab:CreateSlider({
    game.Players.LocalPlayer.Character:SetAttribute("SpeedMultiplier",Value)
    end,
 })
-local PlayerTab = Window:CreateTab("Player", 4483362458) -- Title, Image
 
-local AimAssistEnabled = true
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
 
+local LocalPlayer = Players.LocalPlayer
+local Camera = workspace.CurrentCamera
+
+local AimAssistEnabled = false
+local RANGE = 1000
+
+-- Rayfield toggle
 MainTab:CreateToggle({
     Name = "Aim Assist",
     CurrentValue = false,
@@ -64,3 +71,51 @@ MainTab:CreateToggle({
         AimAssistEnabled = Value
     end,
 })
+
+local function GetClosestTarget()
+    local character = LocalPlayer.Character
+    local root = character and character:FindFirstChild("HumanoidRootPart")
+
+    if not root then
+        return nil
+    end
+
+    local closestTarget = nil
+    local closestDistance = RANGE
+
+    for _, player in ipairs(Players:GetPlayers()) do
+        if player ~= LocalPlayer and player.Character then
+            local targetRoot =
+                player.Character:FindFirstChild("HumanoidRootPart")
+            local humanoid =
+                player.Character:FindFirstChildOfClass("Humanoid")
+
+            if targetRoot and humanoid and humanoid.Health > 0 then
+                local distance =
+                    (targetRoot.Position - root.Position).Magnitude
+
+                if distance <= closestDistance then
+                    closestDistance = distance
+                    closestTarget = targetRoot
+                end
+            end
+        end
+    end
+
+    return closestTarget
+end
+
+RunService.RenderStepped:Connect(function()
+    if not AimAssistEnabled then
+        return
+    end
+
+    local target = GetClosestTarget()
+
+    if target then
+        Camera.CFrame = CFrame.lookAt(
+            Camera.CFrame.Position,
+            target.Position
+        )
+    end
+end)
