@@ -52,8 +52,9 @@ local Slider = PlayerTab:CreateSlider({
    game.Players.LocalPlayer.Character:SetAttribute("SpeedMultiplier",Value)
    end,
 })
+local PlayerTab = Window:CreateTab("Player", 4483362458) -- Title, Image
 
-local AimAssistEnabled = false
+local AimAssistEnabled = true
 
 MainTab:CreateToggle({
     Name = "Aim Assist",
@@ -63,7 +64,3 @@ MainTab:CreateToggle({
         AimAssistEnabled = Value
     end,
 })
-
-if AimAssistEnabled then
-    -- your 1000-stud target-lock code here
-end
